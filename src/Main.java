@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Line Comparison Computation Program");
@@ -13,28 +14,33 @@ public class Main {
         System.out.println("Enter the co=ordinates of Line1 y2: ");
         double y2 = sc.nextDouble();
 
-        double length1=Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
+        double length1 = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         System.out.println("The length of the line is: " + length1);
 
 
         System.out.println("Enter the co-ordinates of Line2 x3: ");
-        double x3=sc.nextDouble();
+        double x3 = sc.nextDouble();
         System.out.println("Enter the co-ordinates of Line2 y3: ");
-        double y3=sc.nextDouble();
+        double y3 = sc.nextDouble();
 
         System.out.println("Enter the co-ordinates of Line2 x4: ");
-        double x4=sc.nextDouble();
+        double x4 = sc.nextDouble();
         System.out.println("Enter the co-ordinates of Line2 y4: ");
-        double y4= sc.nextDouble();
+        double y4 = sc.nextDouble();
 
-        double length2=Math.sqrt(Math.pow(x4-x3,2)+Math.pow(y4-y3,2));
-        System.out.println("The length of the line is: "+length2);
+        double length2 = Math.sqrt(Math.pow(x4 - x3, 2) + Math.pow(y4 - y3, 2));
+        System.out.println("The length of the line is: " + length2);
 
-        if(Double.valueOf(length1).equals(length2)) {
+        Integer comparison = Double.valueOf(length1).compareTo(length2);
+        if (comparison == 0) {
             System.out.println("Two lines are equal in length");
-        }else {
-            System.out.println("Two lines are not equal in length");
+        } else if (comparison > 0) {
+            System.out.println("The Line1 is greater than Line2 in length");
+        } else {
+            System.out.println("The Line1 is Less than Line2 in length");
+
         }
+
         sc.close();
-        }
-        }
+    }
+    }
