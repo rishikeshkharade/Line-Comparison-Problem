@@ -1,44 +1,72 @@
 import java.util.*;
+class Point{
+    private double x;
+    private double y;
 
-public class Main {
+    public Point(double x, double y){
+        this.x=x;
+        this.y=y;
+
+    }
+    public double getX(){
+        return x;
+    }
+    public double getY(){
+        return y;
+    }
+}
+
+class Line{
+    private Point startPoint;
+    private Point endPoint;
+
+    public Line(Point startPoint, Point endPoint){
+        this.startPoint=startPoint;
+        this.endPoint=endPoint;
+    }
+
+public double calculateLength(){
+    return Math.sqrt((Math.pow(endPoint.getX()- startPoint.getX(),2)+Math.pow((endPoint.getY()- startPoint.getY()),2)));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Line otherLine = (Line) obj;
+        return Double.compare(this.calculateLength(), otherLine.calculateLength()) == 0;
+    }
+    public int compareTo(Line otheLine){
+        return Double.compare(this.calculateLength(),otheLine.calculateLength());
+    }
+    }
+
+    public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Line Comparison Computation Program");
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the co-ordinates of Line1 x1: ");
-        double x1 = sc.nextDouble();
-        System.out.println("Enter the co-ordinates of Line1 y1: ");
-        double y1 = sc.nextDouble();
 
-        System.out.println("Enter the co-ordinates of Line1 x2: ");
-        double x2 = sc.nextDouble();
-        System.out.println("Enter the co=ordinates of Line1 y2: ");
-        double y2 = sc.nextDouble();
+        Line line1 = new Line(new Point(1,2), new Point(4,6));
+        Line line2 = new Line(new Point(2,3), new Point(5,7));
 
-        double length1 = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-        System.out.println("The length of the line is: " + length1);
+        double length1 = line1.calculateLength();
+        double length2 = line2.calculateLength();
+        System.out.println("Length of Line1: "+length1);
+        System.out.println("Length of Line2: "+length2);
 
-
-        System.out.println("Enter the co-ordinates of Line2 x3: ");
-        double x3 = sc.nextDouble();
-        System.out.println("Enter the co-ordinates of Line2 y3: ");
-        double y3 = sc.nextDouble();
-
-        System.out.println("Enter the co-ordinates of Line2 x4: ");
-        double x4 = sc.nextDouble();
-        System.out.println("Enter the co-ordinates of Line2 y4: ");
-        double y4 = sc.nextDouble();
-
-        double length2 = Math.sqrt(Math.pow(x4 - x3, 2) + Math.pow(y4 - y3, 2));
-        System.out.println("The length of the line is: " + length2);
-
-        Integer comparison = Double.valueOf(length1).compareTo(length2);
-        if (comparison == 0) {
+        if (line1.equals(line2)) {
             System.out.println("Two lines are equal in length");
-        } else if (comparison > 0) {
-            System.out.println("The Line1 is greater than Line2 in length");
+        } else {
+            System.out.println("The two lines are not equal in length");
+        }
+
+        int comparison = line1.compareTo(line2);
+        if(comparison==0) {
+            System.out.println("Line 1 is equal to Line 2");
+        } else if (comparison>0) {
+        System.out.println("The Line1 is greater than Line2 in length");
         } else {
             System.out.println("The Line1 is Less than Line2 in length");
-
         }
 
         sc.close();
